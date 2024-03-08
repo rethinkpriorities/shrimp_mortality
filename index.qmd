@@ -1,0 +1,11 @@
+# Preface {.unnumbered}
+
+This document is supplemental to our report discussing pre-slaughter mortality in farmed shrimp, which is part of the Rethink Priorities' Shrimp Welfare Sequence.
+
+Here, we detail the methods used to estimate the pre-slaughter mortality rate of farmed shrimps---that is, the proportion of shrimps born and/or raised on farms that die prior to intentionally being killed for food. We focus on the three most farmed species, *Penaeus vannamei*, *Penaeus monodon*, and *Macrobrachium rosenbergii*. Often data for the latter included *Macrobrachium nipponese*, so we group the under them label *Macrobrachium*. There are three chapters covering:
+
+1.  Modeling shrimp pre-slaughter mortality using survival curves
+2.  Comparing our estimates to others found in the literature
+3.  Comparing our estimates to mortality estimates for other farmed taxa and wild shrimp.
+
+See the [GitHub repository](https://github.com/rethinkpriorities/shrimp_mortality) for the data used and the README file for a description of the data.
