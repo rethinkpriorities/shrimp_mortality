@@ -1,2 +1,2 @@
 # shrimp_mortality
-This is the methods document supplemental to our report on Pre-slaughter Mortality in Farmed Shrimp
+This is the supplemental methods document and files for our report on Pre-slaughter Mortality in Farmed Shrimp
