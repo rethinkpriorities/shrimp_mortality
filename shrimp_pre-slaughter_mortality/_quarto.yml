@@ -1,0 +1,33 @@
+project:
+  type: book
+
+book:
+  title: "Methods for Pre-slaughter mortality of farmed shrimp"
+  author: "Hannah McKay and William McAuliffe"
+  repo-url: https://github.com/Hannah-McKay/shrimp-test
+  repo-actions: [issue]
+  date: today
+  chapters:
+    - index.qmd
+    - chapters/survival_curves.qmd
+    - chapters/lit_review.qmd
+    - chapters/cross-species_mortality.qmd
+  reader-mode: true
+
+bibliography: references.bib
+
+format:
+  html:
+    grid:
+      sidebar-width: 200px
+      body-width: 1200px
+      margin-width: 200px
+      gutter-width: 1.5rem
+    theme: flatly
+    code-overflow: wrap
+    code-copy: true
+    toc: true
+    toc-expand: 2
+
+editor: source
+
