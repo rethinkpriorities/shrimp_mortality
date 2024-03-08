@@ -24,7 +24,7 @@ We focus on the most farmed species, *Penaeus vannamei*, *Penaeus monodon*, and 
 
 ### data files 
 
-| File name ___________________________                                                                | Description __________________________________________________________________                                                                                                                                                                                                               |
+| File name                                                                | Description                                                                                                                                                                                                               |
 |------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **comparison folder**                                                                                |                                                                                                                                                                                                                            |
 | cross-species_data.csv                                                                               | Data we collected from the literature on mortality rates, slaughter age, and slaughter weight of other farmed species, including chickens, carnivorous fish, insects, and non-shrimp crustaceans (lobsters, crabs, etc.).  |
