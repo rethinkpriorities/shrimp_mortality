@@ -1,6 +1,6 @@
 # shrimp_mortality
 
-View the rendered methods document here: 
+View the rendered methods document here: [https://rethinkpriorities.github.io/shrimp_mortality/](https://rethinkpriorities.github.io/shrimp_mortality/)
 
 ## About
 This is the supplemental methods document and files for our report on Pre-slaughter Mortality of Farmed Shrimp. It contains all of the data and code used for the analyses in the report.
