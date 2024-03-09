@@ -27,7 +27,7 @@ If you would like to run the code yourself locally, download all of the files in
    - `survival_curves` contains data created in the Survival Curves model chapter (Chapter 1) and used in subsequent chapters
 
 ### data files 
-| File name   ________________________________                                                                | Description _____________________________________________________________________                                                                           |
+| File name   ________________________________                                                                | Description _________________________________________________                                                                       |
 |------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |                `comparison` folder                                   |                                                                                                                                                                                                                            |
 | cross-species_data.csv                                                                               | Data we collected from the literature on mortality rates, slaughter age, and slaughter weight of other farmed species, including chickens, carnivorous fish, insects, and non-shrimp crustaceans (lobsters, crabs, etc.).  |
