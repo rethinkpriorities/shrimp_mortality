@@ -370,7 +370,7 @@ farm.wild.mort$Species<-factor(farm.wild.mort$Species, levels=unique(farm.wild.m
 ggplot(farm.wild.mort, aes(x=Average, y=Species, color=Group)) +
   geom_pointrange(aes(xmin=Lower, xmax=Upper), shape="square",
                   size=.7, linewidth=1, position=position_dodge2(width=1, padding=2)) +
-   labs(caption="For farmed shrimp, squares are medians and error bars are 90% credibility intervals.\nFor wild shrimp, squares are medians and error bars are ranges reported by Dall et al. (1991).", x="Mortality (%)", y="") +
+   labs(caption="For farmed shrimp, squares are medians and error bars are 90% credibility intervals.\nFor wild shrimp, squares are medians and error bars are ranges reported by sources.", x="Mortality (%)", y="") +
   scale_color_manual(values=c("#E69F00", "#56B4E9")) +
  facet_grid(Stage~., scales="free_y", space="free_y")+
   scale_y_discrete(labels=c(
