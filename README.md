@@ -17,7 +17,7 @@ If you want to read through the methods document and see all of the code, view t
 If you would like to run the code yourself locally, download all of the files in the repository. Open the `shrimp_pre-slaughter_mortality.Rproj` file to begin. This will automatically set the working directory and warn if any packages need to be installed.
 
 ## Folders
-- `_book` contains the rendered html files and other site files.
+- `docs` contains the rendered html files and other site files.
 
 - `chapters` contains the .qmd files (Quarto markdown files) where the method and code are written.
 
