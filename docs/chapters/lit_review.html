@@ -163,7 +163,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Methods for Pre-slaughter mortality of farmed shrimp</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/Hannah-McKay/shrimp-test" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/rethinkpriorities/shrimp_mortality/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -237,7 +237,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#data-and-method-limitations" id="toc-data-and-method-limitations" class="nav-link" data-scroll-target="#data-and-method-limitations"><span class="header-section-number">2.3</span> Data and method limitations</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Hannah-McKay/shrimp-test/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/rethinkpriorities/shrimp_mortality/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1582,6 +1582,416 @@ window.Quarto = {
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show the underlying data</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">show.table</span>(intensity.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-disable-processing="true" class="table table-condensed" style="font-size: 12px; width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:left;"> Reference </th>
+   <th style="text-align:right;"> Mean_Mortality </th>
+   <th style="text-align:right;"> SD_Mortality </th>
+   <th style="text-align:left;"> Stage </th>
+   <th style="text-align:left;"> Production_Type </th>
+   <th style="text-align:left;"> Species </th>
+   <th style="text-align:left;"> Country </th>
+   <th style="text-align:right;"> mean </th>
+   <th style="text-align:right;"> 2.5% </th>
+   <th style="text-align:right;"> 97.5% </th>
+   <th style="text-align:right;"> ID </th>
+   <th style="text-align:left;"> Prod.Type </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X2 </td>
+   <td style="text-align:left;"> Fast, 1992 </td>
+   <td style="text-align:right;"> 0.6000 </td>
+   <td style="text-align:right;"> 0.1000 </td>
+   <td style="text-align:left;"> Juvenile-subadult </td>
+   <td style="text-align:left;"> Extensive </td>
+   <td style="text-align:left;"> Penaeids </td>
+   <td style="text-align:left;"> Not Specified </td>
+   <td style="text-align:right;"> 0.6002081 </td>
+   <td style="text-align:right;"> 0.3994682 </td>
+   <td style="text-align:right;"> 0.7891720 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Extensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> X27 </td>
+   <td style="text-align:left;"> SWP, 2022 </td>
+   <td style="text-align:right;"> 0.9725 </td>
+   <td style="text-align:right;"> 0.0225 </td>
+   <td style="text-align:left;"> Postlarval, Juvenile-subadult </td>
+   <td style="text-align:left;"> Extensive </td>
+   <td style="text-align:left;"> P. monodon </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.9723862 </td>
+   <td style="text-align:right;"> 0.9133818 </td>
+   <td style="text-align:right;"> 0.9982326 </td>
+   <td style="text-align:right;"> 27 </td>
+   <td style="text-align:left;"> Extensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 9 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.8000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Extensive </td>
+   <td style="text-align:left;"> P. monodon </td>
+   <td style="text-align:left;"> Thailand </td>
+   <td style="text-align:right;"> 0.8000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Extensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 15 </td>
+   <td style="text-align:left;"> Juárez et al., 2022 </td>
+   <td style="text-align:right;"> 0.8550 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Extensive </td>
+   <td style="text-align:left;"> P. monodon </td>
+   <td style="text-align:left;"> Indonesia </td>
+   <td style="text-align:right;"> 0.8550000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Extensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> X3 </td>
+   <td style="text-align:left;"> Fast, 1992 </td>
+   <td style="text-align:right;"> 0.3000 </td>
+   <td style="text-align:right;"> 0.1000 </td>
+   <td style="text-align:left;"> Juvenile-subadult </td>
+   <td style="text-align:left;"> Semi-intensive </td>
+   <td style="text-align:left;"> Penaeids </td>
+   <td style="text-align:left;"> Not Specified </td>
+   <td style="text-align:right;"> 0.2998896 </td>
+   <td style="text-align:right;"> 0.1228835 </td>
+   <td style="text-align:right;"> 0.5099302 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> Semi-
+intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> X28 </td>
+   <td style="text-align:left;"> SWP, 2022 </td>
+   <td style="text-align:right;"> 0.3500 </td>
+   <td style="text-align:right;"> 0.0500 </td>
+   <td style="text-align:left;"> Postlarval, Juvenile-subadult </td>
+   <td style="text-align:left;"> Semi-intensive </td>
+   <td style="text-align:left;"> P. monodon </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.3499971 </td>
+   <td style="text-align:right;"> 0.2538515 </td>
+   <td style="text-align:right;"> 0.4499964 </td>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:left;"> Semi-
+intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.5100 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Semi-intensive </td>
+   <td style="text-align:left;"> P. monodon </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.5100000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Semi-
+intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.2600 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Semi-intensive </td>
+   <td style="text-align:left;"> P. monodon </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.2600000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Semi-
+intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 5 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.7700 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Semi-intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.7700000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Semi-
+intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 6 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.2500 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Semi-intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.2500000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Semi-
+intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> X4 </td>
+   <td style="text-align:left;"> Fast, 1992 </td>
+   <td style="text-align:right;"> 0.1500 </td>
+   <td style="text-align:right;"> 0.0500 </td>
+   <td style="text-align:left;"> Juvenile-subadult </td>
+   <td style="text-align:left;"> Intensive </td>
+   <td style="text-align:left;"> Penaeids </td>
+   <td style="text-align:left;"> Not Specified </td>
+   <td style="text-align:right;"> 0.1500973 </td>
+   <td style="text-align:right;"> 0.0645443 </td>
+   <td style="text-align:right;"> 0.2591028 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> X18 </td>
+   <td style="text-align:left;"> Thakur et al., 2018 </td>
+   <td style="text-align:right;"> 0.2617 </td>
+   <td style="text-align:right;"> 0.1929 </td>
+   <td style="text-align:left;"> Postlarval, Juvenile-subadult </td>
+   <td style="text-align:left;"> Intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.2627923 </td>
+   <td style="text-align:right;"> 0.0112165 </td>
+   <td style="text-align:right;"> 0.7109977 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> X29 </td>
+   <td style="text-align:left;"> SWP, 2022 </td>
+   <td style="text-align:right;"> 0.1750 </td>
+   <td style="text-align:right;"> 0.0750 </td>
+   <td style="text-align:left;"> Postlarval, Juvenile-subadult </td>
+   <td style="text-align:left;"> Intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.1751624 </td>
+   <td style="text-align:right;"> 0.0535604 </td>
+   <td style="text-align:right;"> 0.3433782 </td>
+   <td style="text-align:right;"> 29 </td>
+   <td style="text-align:left;"> Intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 3 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.1700 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Intensive </td>
+   <td style="text-align:left;"> P. monodon </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.1700000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 4 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.3000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Intensive </td>
+   <td style="text-align:left;"> P. monodon </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.3000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 7 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.1900 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.1900000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 8 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.1900 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.1900000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.2500 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Thailand </td>
+   <td style="text-align:right;"> 0.2500000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 11 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.3300 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Thailand </td>
+   <td style="text-align:right;"> 0.3300000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 12 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.2700 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Thailand </td>
+   <td style="text-align:right;"> 0.2700000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 13 </td>
+   <td style="text-align:left;"> Engle et al., 2017 </td>
+   <td style="text-align:right;"> 0.2000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Thailand </td>
+   <td style="text-align:right;"> 0.2000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 16 </td>
+   <td style="text-align:left;"> Juárez et al., 2022 </td>
+   <td style="text-align:right;"> 0.2750 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Postlarval, Juvenile- subadult </td>
+   <td style="text-align:left;"> Intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Indonesia </td>
+   <td style="text-align:right;"> 0.2750000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> X1 </td>
+   <td style="text-align:left;"> FAO, 2009 </td>
+   <td style="text-align:right;"> 0.2700 </td>
+   <td style="text-align:right;"> 0.0900 </td>
+   <td style="text-align:left;"> Juvenile-subadult </td>
+   <td style="text-align:left;"> Super-Intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Not Specified </td>
+   <td style="text-align:right;"> 0.2698267 </td>
+   <td style="text-align:right;"> 0.1117648 </td>
+   <td style="text-align:right;"> 0.4600704 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Super-
+intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> X5 </td>
+   <td style="text-align:left;"> Fast, 1992 </td>
+   <td style="text-align:right;"> 0.1500 </td>
+   <td style="text-align:right;"> 0.0500 </td>
+   <td style="text-align:left;"> Juvenile-subadult </td>
+   <td style="text-align:left;"> Super-Intensive </td>
+   <td style="text-align:left;"> Penaeids </td>
+   <td style="text-align:left;"> Not Specified </td>
+   <td style="text-align:right;"> 0.1500973 </td>
+   <td style="text-align:right;"> 0.0645443 </td>
+   <td style="text-align:right;"> 0.2591028 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Super-
+intensive </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> X30 </td>
+   <td style="text-align:left;"> SWP, 2022 </td>
+   <td style="text-align:right;"> 0.1750 </td>
+   <td style="text-align:right;"> 0.0750 </td>
+   <td style="text-align:left;"> Postlarval, Juvenile-subadult </td>
+   <td style="text-align:left;"> Super-Intensive </td>
+   <td style="text-align:left;"> P. vannamei </td>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 0.1751624 </td>
+   <td style="text-align:right;"> 0.0535604 </td>
+   <td style="text-align:right;"> 0.3433782 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:left;"> Super-
+intensive </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </section>
 </section>
@@ -2004,4 +2414,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Hannah-McKay/shrimp-test/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rethinkpriorities/shrimp_mortality/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
