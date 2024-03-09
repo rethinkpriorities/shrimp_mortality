@@ -292,7 +292,7 @@ We look at the correlation between weight at slaughter and pre-slaughter mortali
 #| fig-height: 8
 #| fig-width: 10
 #| fig-align: center
-#| layout-ncol: 3
+#| layout-ncol: 2
 
 w1<-ggplot(mortality.unordered, aes(x=Weight, y=Average)) +
    geom_point(aes(x=Weight, y=Average, color=Group)) +
@@ -335,7 +335,6 @@ w3
 We also calculate Spearman's rho for these three analyses.
 
 ```{r}
-#| layout-ncol: 2
 # calculate correlations between weight and mortality
 cor.test(mortality.unordered$Weight, mortality.unordered$Average, alternative="two.sided", method="spearman")
 
