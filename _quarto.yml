@@ -4,7 +4,7 @@ project:
 book:
   title: "Methods for Pre-slaughter mortality of farmed shrimp"
   author: "Hannah McKay and William McAuliffe"
-  repo-url: https://github.com/Hannah-McKay/shrimp-test
+  repo-url: https://github.com/rethinkpriorities/shrimp_mortality/
   repo-actions: [issue]
   date: today
   chapters:
