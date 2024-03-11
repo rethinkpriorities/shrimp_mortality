@@ -17,7 +17,7 @@ Data for farmed shrimp are from the [survival curves model](survival_curves.qmd)
     -   We report the median for chickens as the midpoint of the rates from Junghans et al. (2022) and FAO (2023).
     -   The slaughter age and weight we report for chickens is the median of all the slaughter ages and weights reported in the above sources.
 
--   Carnivorous fish: Welfare Footprint's project on the [Welfare of Farmed Fish](https://perma.cc/FSC7-UCWY). We use their 90% credibility intervals for each species and also reported the midpoint of the intervals.
+-   Carnivorous fish: Welfare Footprint's project on the [Welfare of Farmed Fish](https://perma.cc/FSC7-UCWY). We use their 90% credible intervals for each species and also reported the midpoint of the intervals.
 
 -   Non-shrimp crustaceans: [Wickens and Lee (2002)](https://doi.org/10.1002/9780470995082.ch4) Tables 4.6b--d and tables 4.6g--h.
 
@@ -53,7 +53,7 @@ kable(x, table.attr = 'data-quarto-disable-processing="true"') %>%
 
 ## Loading and preparing data
 
-We now load in the cross-species data. We also load and then build a data frame from the survival curves model so that we can compare our estimates of farmed shrimp mortality to the other species. Welfare footprint's data represents 90% credibility intervals so we make the data frame of farmed shrimp estimates with the same intervals. We will also look at the slaughter age of all these species, so we load the slaughter age estimates from the survival curves model, too.
+We now load in the cross-species data. We also load and then build a data frame from the survival curves model so that we can compare our estimates of farmed shrimp mortality to the other species. Welfare footprint's data represents 90% credible intervals so we make the data frame of farmed shrimp estimates with the same intervals. We will also look at the slaughter age of all these species, so we load the slaughter age estimates from the survival curves model, too.
 
 See the [GitHub repository](https://github.com/rethinkpriorities/shrimp_mortality) for the .csv files used here.
 
@@ -77,7 +77,7 @@ vannamei_days<-read.csv("../data/survival_curves/vannamei_totalfarmed_days.csv",
 monodon_days<-read.csv("../data/survival_curves/monodon_totalfarmed_days.csv", header=TRUE, sep=",")
 macro_days<-read.csv("../data/survival_curves/macro_totalfarmed_days.csv", header=TRUE, sep=",") # these are the slaughter age estimates
 
-# make a data frame of the mortality rates from the survival curves model, this time with 90% credibility intervals, to match the other species data from Welfare Footprint
+# make a data frame of the mortality rates from the survival curves model, this time with 90% credible intervals, to match the other species data from Welfare Footprint
 
 shrimp.mort<-data.frame(
   Group=rep("Farmed shrimp", 12),
@@ -90,7 +90,7 @@ shrimp.mort<-data.frame(
   Aquatic=rep("Aquatic", 12),
   Average=c(
     (1-median(c(
-       quantile(vannamei.cumulative$slaughter.age, probs=0.05), # this time we need 90% credibility intervals to match Welfare Footprint's method
+       quantile(vannamei.cumulative$slaughter.age, probs=0.05), # this time we need 90% credible intervals to match Welfare Footprint's method
        quantile(vannamei.cumulative$slaughter.age, probs=0.95))))*100,
     (1-median(c(
       quantile(monodon.cumulative$slaughter.age, probs=0.05),
@@ -234,7 +234,7 @@ cross_species<-ggplot(mortality.ordered, aes(y = Species, x=Average)) +
            label="Slaughter age (months)") +
   scale_x_continuous(expand=c(0,5)) +
   scale_y_discrete(expand=c(0,0), labels=spec_labs) +
-  labs(caption="Squares are medians and error bars are 90% credibility intervals",
+  labs(caption="Squares are medians and error bars are 90% credible intervals",
        x="Cumulative mortality (%)", y="") +
   theme(plot.margin=margin(r=55, l=0, t=5, b=5),
         legend.position="bottom",
@@ -287,13 +287,11 @@ cor.test(mortality.unordered$Slaught_midpoint_months, mortality.unordered$Averag
 
 We look at the correlation between weight at slaughter and pre-slaughter mortality. We also examine this pattern after removing outliers above 2500g and 500g.
 
+
 ```{r}
 #| warning: false
-#| fig-height: 8
-#| fig-width: 10
 #| fig-align: center
-#| layout-ncol: 2
-
+#| layout: "[[1], [1,1]]"
 w1<-ggplot(mortality.unordered, aes(x=Weight, y=Average)) +
    geom_point(aes(x=Weight, y=Average, color=Group)) +
   geom_smooth(aes(x=Weight, y=Average), method = "lm", se = FALSE,
@@ -302,8 +300,9 @@ w1<-ggplot(mortality.unordered, aes(x=Weight, y=Average)) +
   labs(y="Cumulative mortality midpoint (%)", x="Weight (g)", subtitle="All samples")+
   scale_color_manual(values=c("#E69F00", "#cc79a7", "#0072B2", "#009E73", "#56B4E9"),
                      limits=unique(mortality.unordered$Group)) +
-  theme(legend.title=element_blank())
-w1
+  theme(legend.title=element_blank(),
+        legend.position="bottom")
+
 
 # plot the results removing outliers above 2500g
 w2<-ggplot(mortality.unordered[mortality.unordered$Weight<2500,], aes(x=Weight, y=Average)) +
@@ -316,7 +315,7 @@ w2<-ggplot(mortality.unordered[mortality.unordered$Weight<2500,], aes(x=Weight, 
                      limits=unique(mortality.unordered$Group))+
   theme(legend.title=element_blank(),
         legend.position="none")
-w2
+
 
 # plot the results removing outliers above 500g
 w3<-ggplot(mortality.unordered[mortality.unordered$Weight<500,], aes(x=Weight, y=Average)) +
@@ -329,8 +328,14 @@ w3<-ggplot(mortality.unordered[mortality.unordered$Weight<500,], aes(x=Weight, y
                      limits=unique(mortality.unordered$Group))+
   theme(legend.title=element_blank(),
         legend.position="none")
+
+w1
+
+w2
+
 w3
 ```
+
 
 We also calculate Spearman's rho for these three analyses.
 
@@ -366,10 +371,10 @@ farm.wild.mort$Stage<-factor(farm.wild.mort$Stage, levels=c("Larval", "Postlarva
 farm.wild.mort$Species<-factor(farm.wild.mort$Species, levels=unique(farm.wild.mort$Species)) # make the species name a factor
 
 # plot the results
-ggplot(farm.wild.mort, aes(x=Average, y=Species, color=Group)) +
+wild.farm<-ggplot(farm.wild.mort, aes(x=Average, y=Species, color=Group)) +
   geom_pointrange(aes(xmin=Lower, xmax=Upper), shape="square",
                   size=.7, linewidth=1, position=position_dodge2(width=1, padding=2)) +
-   labs(caption="For farmed shrimp, squares are medians and error bars are 90% credibility intervals.\nFor wild shrimp, squares are medians and error bars are ranges reported by sources.", x="Mortality (%)", y="") +
+   labs(caption="For farmed shrimp, squares are medians and error bars are 90% credible intervals.\nFor wild shrimp, squares are medians and error bars are ranges reported by sources.", x="Mortality (%)", y="") +
   scale_color_manual(values=c("#E69F00", "#56B4E9")) +
  facet_grid(Stage~., scales="free_y", space="free_y")+
   scale_y_discrete(labels=c(
@@ -391,7 +396,7 @@ ggplot(farm.wild.mort, aes(x=Average, y=Species, color=Group)) +
         legend.box.spacing = unit(1, "mm"),
         plot.margin = unit(c(1,1,1,1), "mm"),
         panel.spacing = unit(1.5, "mm"))
-
+wild.farm
 ```
 
 ## Data and method limitations

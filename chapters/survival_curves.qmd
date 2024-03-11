@@ -651,7 +651,7 @@ survival_curves<-ggplot(data=plot_datatest[!plot_datatest$strata=="all",],
         legend.spacing.x = unit(2, "mm"),
         axis.text=element_text(size=10),
         axis.title.y=element_text(size=10, face="bold"),
-        axis.title.x=element_blank(),
+        axis.title.x=element_text(size=10, face="bold"),
         legend.box.spacing = unit(1, "mm"),
         plot.margin = unit(c(1,1,1,1), "mm"))  +
   coord_cartesian(ylim=c(0,100), clip="off") +
@@ -856,7 +856,7 @@ ggplot(comp_slaught_dof, aes(y=Type, x=Proportion, group=Species, fill=Species))
 
 ## Stage specific rates and numbers of individuals
 
-Finally, we extract the mean and 95% credibility intervals for mortality rate at each life stage (including cumulative mortality rate) and number of individuals who die on farms at each stage (and in total).
+Finally, we extract the mean and 95% credible intervals for mortality rate at each life stage (including cumulative mortality rate) and number of individuals who die on farms at each stage (and in total).
 
 ```{r}
 
@@ -947,7 +947,7 @@ mort_indivs<-data.frame(
     )
 )
 
-# add brackets to show the 95% credibility intervals
+# add brackets to show the 95% credible intervals
 mort_indivs$Mortality<-paste0(
   round(mort_indivs$mortality_mean, 2), " [", 
   round(mort_indivs$mortality_lower, 2), "; ", 

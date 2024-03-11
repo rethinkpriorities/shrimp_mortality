@@ -446,7 +446,7 @@ show.table(point.est)
 
 ## Results
 
-The data is largely not based on any specific dataset, but instead on testimony and perceptions of general consensus. There is no guarantee that the different estimates are fully independent of one another. Thus, we do not conduct a meta-analysis. Instead, we present the mean and 95% credibility intervals in a forest plot by sampling from the beta distribution using each study's mean and standard deviation. Since we do not have access to event counts and totals, the sampling approach ensures that the distributions are bounded between 0 and 1. We combine the datasets made above and clean the data ready for plotting.
+The data is largely not based on any specific dataset, but instead on testimony and perceptions of general consensus. There is no guarantee that the different estimates are fully independent of one another. Thus, we do not conduct a meta-analysis. Instead, we present the mean and 95% credible intervals in a forest plot by sampling from the beta distribution using each study's mean and standard deviation. Since we do not have access to event counts and totals, the sampling approach ensures that the distributions are bounded between 0 and 1. We combine the datasets made above and clean the data ready for plotting.
 
 ```{r}
 
@@ -490,8 +490,6 @@ preslaughtermortality$Species<-factor(preslaughtermortality$Species,
 
 Finally, we want to get our estimates form the survival curves model to compare to the literature review.
 ```{r}
-#| fig-width: 9
-#| fig-height: 17
 # load the data
 
 ## cumulative rates
@@ -525,7 +523,7 @@ shrimp.mort<-data.frame(Reference=rep("Survival curves model", 12),
                               mean(bystage.vannamei$juvenile.adult),
                               mean(bystage.monodon$juvenile.adult),
                               mean(bystage.macro$juvenile.adult)),
-                      '2.5%'=c((1-quantile(vannamei.cumulative$slaughter.age, probs=0.975)), # get the lower bound of our 95% credibility intervals
+                      '2.5%'=c((1-quantile(vannamei.cumulative$slaughter.age, probs=0.975)), # get the lower bound of our 95% credible intervals
                               (1-quantile(monodon.cumulative$slaughter.age, probs=0.975)),
                               (1-quantile(macro.cumulative$slaughter.age, probs=0.975)),
                               quantile(bystage.vannamei$larval, probs=0.025),
@@ -537,7 +535,7 @@ shrimp.mort<-data.frame(Reference=rep("Survival curves model", 12),
                               quantile(bystage.vannamei$juvenile.adult, probs=0.025),
                               quantile(bystage.monodon$juvenile.adult, probs=0.025),
                               quantile(bystage.macro$juvenile.adult, probs=0.025)),
-                      '97.5%'=c((1-quantile(vannamei.cumulative$slaughter.age, probs=0.025)), # get the upper bound of our 95% credibility intervals
+                      '97.5%'=c((1-quantile(vannamei.cumulative$slaughter.age, probs=0.025)), # get the upper bound of our 95% credible intervals
                                 (1-quantile(monodon.cumulative$slaughter.age, probs=0.025)),
                                 (1-quantile(macro.cumulative$slaughter.age, probs=0.025)),
                                 quantile(bystage.vannamei$larval, probs=0.975),
@@ -567,6 +565,8 @@ point.est$Stage<-factor(point.est$Stage, levels=c("Post- larval", "Postlarval, J
 
 Now we can plot the results.
 ```{r}
+#| fig-width: 9
+#| fig-height: 14
 lit.review.w.model<-ggplot(all.dat) +
   geom_pointrange(aes(y = Reference,  x = mean*100,
                       xmin = `2.5%`*100, xmax = `97.5%`*100,
@@ -583,7 +583,7 @@ lit.review.w.model<-ggplot(all.dat) +
                                expression(italic("P. monodon")), 
                                expression(italic("P. vannamei")),
                                "Penaeids")) +
-  labs(caption = "Circles are means and error bars are 95% credibility intervals. Crosses are point estimates.",x="Died before end of stage (%)") +
+  labs(caption = "Circles are means and error bars are 95% credible intervals. Crosses are point estimates.",x="Died before end of stage (%)") +
   guides(color=guide_legend(nrow=1,byrow=TRUE)) +
   theme(legend.position="bottom",
         legend.title=element_blank(),
@@ -606,7 +606,7 @@ lit.review.w.model
 
 ### Farm intensity
 
-Now we can see how mortality varies by production intensity. We restrict this analysis to the estimates from specific farm intensities. We provide errors bars of 95% credibility intervals for estimates that had ranges.
+Now we can see how mortality varies by production intensity. We restrict this analysis to the estimates from specific farm intensities. We provide errors bars of 95% credible intervals for estimates that had ranges.
 
 ```{r}
 # duplicate the data so that we preserve it
@@ -660,6 +660,9 @@ ggplot(intensity.data, aes(x=Prod.Type, y=mean*100, fill=Species)) +
         legend.box.spacing = unit(1, "mm"),
         plot.margin = unit(c(1,1,1,1), "mm")) +
   coord_flip()
+
+# show the underlying data
+show.table(intensity.data)
 
 ```
 
