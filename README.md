@@ -27,8 +27,8 @@ If you would like to run the code yourself locally, download all of the files in
    - `survival_curves` contains data created in the Survival Curves model chapter (Chapter 1) and used in subsequent chapters
 
 ### data files 
-| File name   ________________________________                                                                | Description _________________________________________________                                                                       |
-|------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| File name __________________________________  | Description ____________________________________________________________________  |
+|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | wild_shrimp.csv | Spreadsheet showing how we calculated wild shrimp mortality from the numbers in Table 11.1 of [Dall et al., 1991](https://doi.org/10.1016/S0065-2881(08)60177-7). |
 |                `comparison` folder                                   |                                                                                                                                                                                                                            |
 | cross-species_data.csv                                                                               | Data we collected from the literature on mortality rates, slaughter age, and slaughter weight of other farmed species, including chickens, carnivorous fish, insects, and non-shrimp crustaceans (lobsters, crabs, etc.).  |
