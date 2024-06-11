@@ -6,7 +6,7 @@ editor_options:
 
 This chapter compares our estimate from the first chapter with those found in the wider academic and gray literature. To do so, we review several different estimates of the survival rate of shrimps to the end of a given stage of production.
 
-There are two strategies for estimating pre-slaughter mortality rates. The first is to take overall estimates, aggregated across production types, weighting them proportional to how credible each source is. The second is to break down the pre-slaughter mortality rates according to the production style of the farm, as rates may differ according to how intensive production is. Then, we can aggregate the results by weighting them according to what percentage of shrimps comes from each production type. One can carry out a similar approach by breaking down mortality rates by species, and then weighing the aggregate results by the proportion of overall farmed shrimp production that each species represents.
+There are two strategies for estimating pre-slaughter mortality rates. The first is to take overall estimates, aggregated across production types, weighting them proportional to how credible each source is. The second is to break down the pre-slaughter mortality rates according to the production style of the farm, as rates may differ according to how intensive production is. Then, we can aggregate the results by weighting them according to what percentage of shrimp comes from each production type. One can carry out a similar approach by breaking down mortality rates by species, and then weighing the aggregate results by the proportion of overall farmed shrimp production that each species represents.
 
 We start by uploading packages and functions.
 
@@ -277,7 +277,7 @@ Fo *P. monodon* they report:
 -   "The survival rate from larva to PL is 65-75%" (p. 196)
 -   "Total production of 1.4-1.9 t/ha can be expected per crop with a survival rate of about 80%." (p. 205)
 
-For the latter we assume the same standard deviation as that of the larva--postlarva period. We infer the overall survival rate by sampling from the rates at each stage.
+For the latter, we assume the same standard deviation as that of the larva--postlarva period. We infer the overall survival rate by sampling from the rates at each stage.
 
 For *M. rosenbergii* they report:
 
@@ -349,7 +349,7 @@ show.table(New)
 
 ### KSU, 2002
 
-The [Kentucky State University Aquaculture Program](https://perma.cc/ZPK5-NPXE) report that survival of *M. rosenbergii* in Kentucky varies between 60% and 80% (p. 28). Earlier in the manual (p. 5) they report "The hatchery and nursery procedures required to grow 30- to 60-day-old freshwater shrimp juveniles for pond stocking are complex", so we assume they are referring to the juvenile stage and categorize this as "Juvenile-subadult."
+The [Kentucky State University Aquaculture Program](https://perma.cc/ZPK5-NPXE) reports that survival of *M. rosenbergii* in Kentucky varies between 60% and 80% (p. 28). Earlier in the manual (p. 5) they report "The hatchery and nursery procedures required to grow 30- to 60-day-old freshwater shrimp juveniles for pond stocking are complex", so we assume they are referring to the juvenile stage and categorize this as "Juvenile-subadult."
 
 ```{r}
 KSU_mean<- mean(c(1-.60, 1-.80))
@@ -553,7 +553,7 @@ shrimp.mort<-data.frame(Reference=rep("Survival curves model", 12),
 # join the survival curves estimates to the literature review data
 all.dat<-plyr::rbind.fill(shrimp.mort, preslaughtermortality) 
 
-# organize the lide stage categories in order
+# organize the life stage categories in order
 all.dat$Stage<-factor(all.dat$Stage, levels=c( "All", "Larval", "Postlarval", "Juvenile-subadult", "Postlarval, Juvenile-subadult"))
 
 # make sure the text can wrap by putting a space in the word, to ensure a clean graph
@@ -606,7 +606,7 @@ lit.review.w.model
 
 ### Farm intensity
 
-Now we can see how mortality varies by production intensity. We restrict this analysis to the estimates from specific farm intensities. We provide errors bars of 95% credible intervals for estimates that had ranges.
+Now we can see how mortality varies by production intensity. We restrict this analysis to the estimates from specific farm intensities. We provide error bars of 95% credible intervals for estimates that had ranges.
 
 ```{r}
 # duplicate the data so that we preserve it
@@ -626,7 +626,7 @@ intensity.data<-rbind(preslaughtermortality2, point.est2)
 intensity.data<-intensity.data %>%
   filter(!Production_Type=="Mixed/All")
 
-# order the whole data frame from extensive to super intensive farms
+# order the whole data frame from extensive to super-intensive farms
 intensity.data <- intensity.data[order(intensity.data$Production_Type), ]
 
 # put species in the order we want them to appear
@@ -680,6 +680,6 @@ Practical measurement difficulty: “Use of survival as an indicator in shrimp c
 
 Non-random sampling: “Heterotrophic, biofloc, culture systems were not included in the survey as this method does not constitute a large share of shrimp production in either country.” Even if certain types of production are rare, excluding them entirely from surveys could bias results if their pre-slaughter mortality rates are considerably different.
 
-Non-random response: “It was intended initially to select farms randomly from satellite imagery, but many farmers,especially in Thailand, refused to participate in interviews… We believe that the reluctance of farmers to participate involved two factors. The interviews and farm inspections were time consuming, requiring nearly an entire day at most farms,and up to 2 d at larger farms. Moreover, an international, environmental nongovernmental organization was conducting the survey, and the farmers were suspicious of the project motives”(p. 203). If unwillingness to participate correlated with preslaughter mortality rates, the results would be biased.
+Non-random response: “It was intended initially to select farms randomly from satellite imagery, but many farmers, especially in Thailand, refused to participate in interviews… We believe that the reluctance of farmers to participate involved two factors. The interviews and farm inspections were time consuming, requiring nearly an entire day at most farms, and up to 2 d at larger farms. Moreover, an international, environmental nongovernmental organization was conducting the survey, and the farmers were suspicious of the project motives”(p. 203). If unwillingness to participate correlated with preslaughter mortality rates, the results would be biased.
 
 Exclusion of outliers: “Failed crops reported by some farms in both countries were not included in the survival estimates. Hence, the actual survival of postlarvae to harvest at some farms is more or less than reported earlier for successful crops” (p. 209). We suspect that mass die-off events are frequently omitted in calculations, which would explain why FAO’s range of 55-91% survival seems so anomalously wide.
